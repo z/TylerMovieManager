@@ -18,6 +18,7 @@ service php5-fpm start
 (
     cd /var/www/tmm && \
     php artisan migrate && \
+    php artisan db:seed && \
     npm install && \
     gulp
 )
