@@ -9,15 +9,15 @@ Application Requirements
 ------------------------
 
 x Title: TylerMovieManager (Tyler Movie Manager)
-- Create movie model:
-    - title `str` (1-50 characters)
-    - format `choice` (["VHS", "DVD", "Streaming"])
-    - length `int` displayed as "x hr yy m" (wut)
-    - year `int` (between 1800 and 2100)
-    - rating `int` default:null (1-5)
+x Create movie model:
+    x title `str` (1-50 characters)
+    x format `choice` (["VHS", "DVD", "Streaming"])
+    x length `int` displayed as "x hr yy m" (wut)
+    x year `int` (between 1800 and 2100)
+    x rating `int` default:null (1-5)
         x Model / Database
         x Seed Database
-        - Validation Layer
+        x Validation Layer
 x CRUD API for a movie collection
     x RESTful responses
 - Front-end bootstrap + vue.js 2.0

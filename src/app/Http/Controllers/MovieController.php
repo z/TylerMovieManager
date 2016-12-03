@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Movie;
 use App\Format;
+use Validator;
 
 class MovieController extends Controller
 {
@@ -39,7 +40,18 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the request...
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|between:1,50',
+            'length' => 'required|integer|max:4320000',
+            'year' => 'required|integer|between:1800,2100',
+            'rating' => 'required|integer|between:1,5',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 400);
+        }
 
         $format = Format::where('name', $request->format)->first();
 
@@ -50,7 +62,6 @@ class MovieController extends Controller
         }
 
         try {
-            // if $movie, else, return HTTP 201
             $movie = new Movie;
 
             $movie->user_id = Auth::guard('token')->id();
@@ -105,7 +116,18 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validate the request...
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|between:1,50',
+            'length' => 'required|integer|max:4320000',
+            'year' => 'required|integer|between:1800,2100',
+            'rating' => 'required|integer|between:1,5',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 400);
+        }
 
         $movie = Movie::where('user_id', Auth::guard('token')->id())->where('id', $id)->first();
 

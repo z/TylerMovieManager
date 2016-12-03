@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Format;
+use Validator;
 
 class FormatController extends Controller
 {
@@ -39,7 +40,16 @@ class FormatController extends Controller
     public function store(Request $request)
     {
         // Limit access to admin
-        // Validate the request...
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 400);
+        }
 
         try {
             $format = new Format;
@@ -92,7 +102,17 @@ class FormatController extends Controller
     public function update(Request $request, $id)
     {
         // Limit access to admin
-        // if $format, else, return HTTP 201
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 400);
+        }
+
         $format = Format::find($id);
 
         if (!$format) {
@@ -127,6 +147,7 @@ class FormatController extends Controller
     public function destroy($id)
     {
         // Limit access to admin
+
         $format = Format::find($id);
 
         if (!$format) {
