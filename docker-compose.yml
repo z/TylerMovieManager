@@ -1,0 +1,30 @@
+version: '2'
+services:
+  db:
+    restart: on-failure:10
+    image: mariadb
+    volumes:
+      - ./docker/containers/mysql/data:/var/lib/mysql:rw
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: tmm
+      MYSQL_PASSWORD: cool_password
+      MYSQL_DATABASE: tmm
+    ports:
+      - "3306:3306"
+  tmm:
+    build:
+      context: docker
+      dockerfile: nginx.Dockerfile
+    command: ./bin/wait-for-mysql.sh db /usr/sbin/nginx
+    volumes:
+      - ./docker/bin/wait-for-mysql.sh:/bin/wait-for-mysql.sh
+      - ./docker/containers/nginx/tmm.8ed.local.conf:/etc/nginx/sites-enabled/default
+      - ./src:/var/www/tmm
+    ports:
+      - "80:80"
+      - "443:443"
+    env_file:
+      - ./src/.env
+    depends_on:
+      - db

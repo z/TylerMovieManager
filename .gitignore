@@ -1,0 +1,7 @@
+# meta
+.idea/
+*.swo
+*.swp
+
+# project
+/docker/containers/mysql/

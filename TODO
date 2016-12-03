@@ -1,0 +1,30 @@
+Objective
+---------
+
+x Setup development environment
+x Version control (git)
+- Deployment workflow
+
+Application Requirements
+------------------------
+
+x Title: TylerMovieManager (Tyler Movie Manager)
+- Create movie model:
+    - title `str` (1-50 characters)
+    - format `choice` (["VHS", "DVD", "Streaming"])
+    - length `int` displayed as "x hr yy m" (wut)
+    - year `int` (between 1800 and 2100)
+    - rating `int` default:null (1-5)
+- CRUD API for a movie collection
+- Front-end bootstrap + vue.js 2.0
+- Splash page with cool graphic at / -> /movies for collection
+- Header [Home, Movies] + Footer
+- Responsive Design
+- Movies sortable by: title, format, etc.
+
+Extra
+-----
+
+- Users model + oauth
+- SPA transitions
+- Integrate 3rd party API
