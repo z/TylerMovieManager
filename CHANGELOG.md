@@ -1,3 +1,8 @@
+##  0.3.2 / 2016-12-03
+
+### Added
+* Xdebug is now enabled by default
+
 ##  0.3.1 / 2016-12-03
 
 ### Added

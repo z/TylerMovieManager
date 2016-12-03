@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use Auth;
 use App\Format;
 use Validator;
@@ -58,7 +59,7 @@ class FormatController extends Controller
 
             $format->save();
         }
-        catch (Illuminate\Database\QueryException $e){
+        catch (QueryException $e){
             // log: $e->getMessage();
             return response()->json([
                 'errors' => 'Query error.'
@@ -127,7 +128,7 @@ class FormatController extends Controller
 
             $format->save();
         }
-        catch (Illuminate\Database\QueryException $e){
+        catch (QueryException $e){
             // log: $e->getMessage();
             return response()->json([
                 'errors' => 'Query error.'
@@ -160,7 +161,7 @@ class FormatController extends Controller
         try {
             $format->delete();
         }
-        catch (Illuminate\Database\QueryException $e){
+        catch (QueryException $e){
             // log: $e->getMessage();
             return response()->json([
                 'errors' => 'Query error.'

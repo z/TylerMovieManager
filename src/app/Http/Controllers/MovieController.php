@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use Auth;
 use App\Movie;
 use App\Format;
@@ -53,7 +54,8 @@ class MovieController extends Controller
             ], 400);
         }
 
-        $format = Format::where('name', $request->format)->first();
+        $format_name = $request->get('format');
+        $format = Format::where('name', $format_name)->first();
 
         if (!$format) {
             return response()->json([
@@ -73,7 +75,7 @@ class MovieController extends Controller
 
             $movie->save();
         }
-        catch (Illuminate\Database\QueryException $e){
+        catch (QueryException $e){
             // log: $e->getMessage();
             return response()->json([
                 'errors' => 'Query error.'
@@ -138,7 +140,8 @@ class MovieController extends Controller
             ], 404);
         }
 
-        $format = Format::where('name', $request->format)->first();
+        $format_name = $request->get('format');
+        $format = Format::where('name', $format_name)->first();
 
         if (!$format) {
             return response()->json([
@@ -155,7 +158,7 @@ class MovieController extends Controller
 
             $movie->save();
         }
-        catch (Illuminate\Database\QueryException $e){
+        catch (QueryException $e){
             // log: $e->getMessage();
             return response()->json([
                 'errors' => 'Query error.'
@@ -185,7 +188,7 @@ class MovieController extends Controller
         try {
             $movie->delete();
         }
-        catch (Illuminate\Database\QueryException $e){
+        catch (QueryException $e){
             // log: $e->getMessage();
             return response()->json([
                 'errors' => 'Query error.'
