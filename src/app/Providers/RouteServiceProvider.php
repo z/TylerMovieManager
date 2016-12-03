@@ -39,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        $this->mapTokenRoutes();
     }
 
     /**
@@ -75,5 +75,24 @@ class RouteServiceProvider extends ServiceProvider
         ], function ($router) {
             require base_path('routes/api.php');
         });
+    }
+
+    /**
+     * Define the "token" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapTokenRoutes()
+    {
+        Route::group([
+            'middleware' => 'auth:token',
+            'namespace' => $this->namespace,
+            'prefix' => 'token',
+        ], function ($router) {
+            require base_path('routes/token.php');
+        });
+
     }
 }

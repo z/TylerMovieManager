@@ -13,16 +13,18 @@ class CreateMoviesTable extends Migration
      */
     public function up()
     {
-        Schema::create('format', function (Blueprint $table) {
+        Schema::create('formats', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->timestamps();
         });
 
         Schema::create('movies', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('format_id')->unsigned();
-            $table->foreign('format_id')->references('id')->on('format');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('format_id')->references('id')->on('formats');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('title');
             $table->integer('length');
             $table->integer('year');
@@ -39,7 +41,7 @@ class CreateMoviesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('movies');
+        Schema::dropIfExists('movie');
         Schema::dropIfExists('format');
     }
 }

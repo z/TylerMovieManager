@@ -1,3 +1,10 @@
+##  0.3.0 / 2016-12-03
+
+### Added
+* token based auth (less secure)
+* Introduced basic CRUD Movie + Format resources
+* Added postman collection for REST endpoints in `extra`
+
 ##  0.2.0 / 2016-12-03
 
 ### Added

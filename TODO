@@ -15,12 +15,16 @@ x Title: TylerMovieManager (Tyler Movie Manager)
     - length `int` displayed as "x hr yy m" (wut)
     - year `int` (between 1800 and 2100)
     - rating `int` default:null (1-5)
+        x Model / Database
+        - Seed Database
+        - Validation Layer
 - CRUD API for a movie collection
+    x RESTful responses
 - Front-end bootstrap + vue.js 2.0
-- Splash page with cool graphic at / -> /movies for collection
-- Header [Home, Movies] + Footer
-- Responsive Design
-- Movies sortable by: title, format, etc.
+    - Splash page with cool graphic at / -> /movies for collection
+    - Header [Home, Movies] + Footer
+    - Responsive Design
+    - Movies sortable by: title, format, etc.
 
 Extra
 -----

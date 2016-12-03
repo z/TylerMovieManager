@@ -37,6 +37,8 @@ docker-compose up
 
 This setups a database, and an nginx + php5-fpm container to serve the Laravel project located in `src`. 
 
+Visit [http://tmm.8ed.local](http://tmm.8ed.local) in your web browser and create a new user.
+
 ## Developer Notes
 
 ```bash
