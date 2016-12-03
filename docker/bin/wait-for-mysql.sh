@@ -15,4 +15,11 @@ done
 
 service php5-fpm start
 
+(
+    cd /var/www/tmm && \
+    php artisan migrate && \
+    npm install && \
+    gulp
+)
+
 exec $cmd

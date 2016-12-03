@@ -25,6 +25,6 @@ x Title: TylerMovieManager (Tyler Movie Manager)
 Extra
 -----
 
-- Users model + oauth
+x Users model + oauth
 - SPA transitions
 - Integrate 3rd party API

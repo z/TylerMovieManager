@@ -5,3 +5,5 @@
 
 # project
 /docker/containers/mysql/
+/src/storage/oauth-private.key
+/src/storage/oauth-public.key
