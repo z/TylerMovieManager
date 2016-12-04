@@ -17,4 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/developers', 'DeveloperTokensController@index');
+
+Route::get('/home', function () {
+    return view('movies');
+});
+
+Route::get('/movies', function () {
+    return view('movies');
+});

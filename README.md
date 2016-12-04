@@ -2,6 +2,8 @@
 
 A movie management application using a REST API built with Laravel.
 
+![Screenshot TMM](./extra/tmm.png)
+
 ## Dependencies
 
 * [docker](https://docs.docker.com/engine/installation/)

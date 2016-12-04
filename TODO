@@ -20,11 +20,18 @@ x Create movie model:
         x Validation Layer
 x CRUD API for a movie collection
     x RESTful responses
-- Front-end bootstrap + vue.js 2.0
-    - Splash page with cool graphic at / -> /movies for collection
-    - Header [Home, Movies] + Footer
-    - Responsive Design
+x Front-end bootstrap + vue.js 2.0
+    x Splash page with cool graphic at / -> /movies for collection
+    x Header [Home, Movies] + Footer
+    x Responsive Design
     - Movies sortable by: title, format, etc.
+
+Deployment
+----------
+- Use docker
+    - only the .env file should be needed
+        - Harden the server
+    - Digital Ocean
 
 Extra
 -----

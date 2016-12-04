@@ -1,3 +1,9 @@
+##  0.4.0 / 2016-12-03
+
+### Added
+* Basic front-end design
+* Dedicated oauth page
+
 ##  0.3.2 / 2016-12-03
 
 ### Added
