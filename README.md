@@ -2,8 +2,8 @@
 
 A movie management application using a REST API built with Laravel.
 
-![Screenshot TMM](./extra/tmm.png)
-![Screenshot TMM](./extra/tmm-browse.png)
+![Screenshot TMM](extra/media/tmm.png)
+![Screenshot TMM](extra/media/tmm-browse.png)
 
 ## Dependencies
 
@@ -48,6 +48,10 @@ Bring it up with:
 ```
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
 ```
+
+### Automated (optional)
+
+Take a look at the `extra/git/hooks/post-receive` hook to setup automated deployments when you push to a special remote.
 
 ## Developer Notes
 
