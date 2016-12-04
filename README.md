@@ -3,6 +3,7 @@
 A movie management application using a REST API built with Laravel.
 
 ![Screenshot TMM](./extra/tmm.png)
+![Screenshot TMM](./extra/tmm-browse.png)
 
 ## Dependencies
 

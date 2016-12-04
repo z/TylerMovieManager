@@ -24,7 +24,7 @@ x Front-end bootstrap + vue.js 2.0
     x Splash page with cool graphic at / -> /movies for collection
     x Header [Home, Movies] + Footer
     x Responsive Design
-    - Movies sortable by: title, format, etc.
+    x Movies sortable by: title, format, etc.
 
 Deployment
 ----------

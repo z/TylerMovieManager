@@ -13,6 +13,7 @@ require('./bootstrap');
  * the application, or feel free to tweak this setup for your needs.
  */
 
+Vue.component('movie', require('./components/Movie.vue'));
 Vue.component('movies', require('./components/Movies.vue'));
 
 Vue.component(

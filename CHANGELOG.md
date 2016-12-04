@@ -1,3 +1,9 @@
+##  0.4.1 / 2016-12-04
+
+### Added
+* Movie list page basics with sorting / filtering
+* animate.css is now included
+
 ##  0.4.0 / 2016-12-03
 
 ### Added

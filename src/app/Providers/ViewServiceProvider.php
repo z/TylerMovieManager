@@ -16,9 +16,13 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($view)
         {
             $user = request()->user();
-
-            $view->with('user', $user);
-            $view->with('token', $user->api_token);
+            if ($user != NULL) {
+                $token = $user->api_token;
+                $view->with('user', $user);
+            } else {
+                $token = false;
+            }
+            $view->with('token', $token);
         });
     }
 
