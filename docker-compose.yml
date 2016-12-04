@@ -15,11 +15,12 @@ services:
   tmm:
     build:
       context: docker
-      dockerfile: nginx.Dockerfile
+      dockerfile: containers/nginx.Dockerfile
     command: ./bin/wait-for-mysql.sh db /usr/sbin/nginx
     volumes:
       - ./docker/bin/wait-for-mysql.sh:/bin/wait-for-mysql.sh
-      - ./docker/containers/nginx/tmm.8ed.local.conf:/etc/nginx/sites-enabled/default
+      - ./docker/containers/nginx/sites-available/tmm.8ed.local.conf:/etc/nginx/sites-enabled/default
+      - ./docker/containers/nginx/php/xdebug.ini:/etc/php5/mods-available/xdebug.ini
       - ./src:/var/www/tmm
     ports:
       - "80:80"
