@@ -7,31 +7,44 @@
         <div v-if="movies.length > 0">
             <div class="row">
                 <div class="col-md-12">
-                    <input type="checkbox" id="1" value="1" v-model.number="selected_formats"> VHS
-                    <input type="checkbox" id="2" value="2" v-model.number="selected_formats"> DVD
-                    <input type="checkbox" id="3" value="3" v-model.number="selected_formats"> Streaming
-                    <span>|</span>
-                    Sort:
-                    <select v-model.number="sorting_selected">
-                        <option v-for="sorting_option in sorting_options" v-bind:value="sorting_option.value" type="number">
-                            {{ sorting_option.text }}
-                        </option>
-                    </select>
-                    <select v-model.number="sort_order">
-                        <option v-for="sorting_direction in sorting_directions" v-bind:value="sorting_direction.value" type="number">
-                            {{ sorting_direction.text }}
-                        </option>
-                    </select>
-                    <span>|</span>
-                    <span>
-                        Rating:
-                        <select v-model.number="rating_selected">
-                            <option v-for="rating_option in rating_options" v-bind:value="rating_option.value" type="number">
-                                {{ rating_option.text }}
-                            </option>
-                        </select>
-                    </span>
-                    <input v-model="query" class="pull-right">
+
+                    <div class="row">
+                        <div class="pull-left col-md-5 col-sm-12">
+                            <div class="input-group">
+                                <input v-model="query" type="text" class="form-control" placeholder="Search">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pull-right filter-options col-md-7 col-sm-12">
+                            <input type="checkbox" id="1" value="1" v-model.number="selected_formats"> VHS
+                            <input type="checkbox" id="2" value="2" v-model.number="selected_formats"> DVD
+                            <input type="checkbox" id="3" value="3" v-model.number="selected_formats"> Streaming
+                            <span>|</span>
+                            Sort:
+                            <select v-model.number="sorting_selected">
+                                <option v-for="sorting_option in sorting_options" v-bind:value="sorting_option.value" type="number">
+                                    {{ sorting_option.text }}
+                                </option>
+                            </select>
+                            <select v-model.number="sort_order">
+                                <option v-for="sorting_direction in sorting_directions" v-bind:value="sorting_direction.value" type="number">
+                                    {{ sorting_direction.text }}
+                                </option>
+                            </select>
+                            <span>|</span>
+                            <span>
+                                Rating:
+                                <select v-model.number="rating_selected">
+                                    <option v-for="rating_option in rating_options" v-bind:value="rating_option.value" type="number">
+                                        {{ rating_option.text }}
+                                    </option>
+                                </select>
+                            </span>
+                        </div><!-- .filter-options -->
+                    </div>
                 </div>
             </div>
             <div class="row">

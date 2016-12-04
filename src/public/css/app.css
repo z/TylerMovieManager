@@ -10871,11 +10871,16 @@ body > .container {
 
 .btn-custom {
   background-color: transparent;
-  font-size: 18px;
+  font-size: 16px;
+  padding: .5em .5em;
 }
 
 .movie-collection {
   padding-bottom: 15px;
+}
+
+.filter-options {
+  padding: 0.5em 1.5em;
 }
 
 /*# sourceMappingURL=app.css.map */
