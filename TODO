@@ -3,7 +3,7 @@ Objective
 
 x Setup development environment
 x Version control (git)
-- Deployment workflow
+x Deployment workflow
 
 Application Requirements
 ------------------------
@@ -28,10 +28,11 @@ x Front-end bootstrap + vue.js 2.0
 
 Deployment
 ----------
-- Use docker
+x Use docker
     - only the .env file should be needed
-        - Harden the server
-    - Digital Ocean
+        x Harden the server (basics, sshd, ufw, fail2ban, rkhunter)
+    x Digital Ocean
+- Use git hook
 
 Extra
 -----

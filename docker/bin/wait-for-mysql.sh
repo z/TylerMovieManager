@@ -17,8 +17,12 @@ service php5-fpm start
 
 (
     cd /var/www/tmm && \
+    chmod -R o+w storage && \
+    chmod -R o+w bootstrap/cache && \
     php artisan migrate && \
     php artisan db:seed && \
+    php artisan cache:clear && \
+    php artisan clear-compile && \
     npm install && \
     gulp
 )

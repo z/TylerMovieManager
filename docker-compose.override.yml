@@ -1,0 +1,15 @@
+version: '2'
+services:
+  db:
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: tmm
+      MYSQL_PASSWORD: cool_password
+      MYSQL_DATABASE: tmm
+  tmm:
+    environment:
+      - VIRTUAL_HOST=tmm.8ed.local
+      - NODE_ENV=local
+    volumes:
+      - ./docker/containers/nginx/sites-available/tmm.8ed.local.conf:/etc/nginx/sites-enabled/default
+      - ./docker/containers/nginx/php/xdebug.ini:/etc/php5/mods-available/xdebug.ini
