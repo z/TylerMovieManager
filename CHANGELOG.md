@@ -1,3 +1,9 @@
+##  0.5.0 / 2016-12-04
+
+### Added
+* CRUD exposed in the GUI
+* git post-receive hook for deployment
+
 ##  0.4.1 / 2016-12-04
 
 ### Added
