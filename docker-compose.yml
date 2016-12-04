@@ -5,11 +5,6 @@ services:
     image: mariadb
     volumes:
       - ./docker/containers/mysql/data:/var/lib/mysql:rw
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: tmm
-      MYSQL_PASSWORD: cool_password
-      MYSQL_DATABASE: tmm
     ports:
       - "3306:3306"
   tmm:
@@ -19,8 +14,6 @@ services:
     command: ./bin/wait-for-mysql.sh db /usr/sbin/nginx
     volumes:
       - ./docker/bin/wait-for-mysql.sh:/bin/wait-for-mysql.sh
-      - ./docker/containers/nginx/sites-available/tmm.8ed.local.conf:/etc/nginx/sites-enabled/default
-      - ./docker/containers/nginx/php/xdebug.ini:/etc/php5/mods-available/xdebug.ini
       - ./src:/var/www/tmm
     ports:
       - "80:80"

@@ -5,5 +5,8 @@
 
 # project
 /docker/containers/mysql/
+
+# secrets
+/docker-compose.prod.yml
 /src/storage/oauth-private.key
 /src/storage/oauth-public.key

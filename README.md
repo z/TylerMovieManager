@@ -18,15 +18,12 @@ For development, nginx expects the domain `tmm.8ed.local`, add that to `/etc/hos
 sudo echo "127.0.0.1 tmm.8ed.local" >> /etc/hosts
 ```
 
-An `.env` file is also required to set up environment variables.
- 
-```
-cp src/.env.local src/.env
-```
+An `.env` file is also required to set up environment variables, laravel should automatically copy the `.env.example` file to `.env` if `.env` is not found.
 
-Generate oauth keys:
+Generate oauth keys and install vendor packages:
 
 ```
+composer install
 php artisan passport:install
 ```
 
@@ -41,6 +38,16 @@ docker-compose up
 This setups a database, and an nginx + php5-fpm container to serve the Laravel project located in `src`. 
 
 Visit [http://tmm.8ed.local](http://tmm.8ed.local) in your web browser and create a new user.
+
+## Deployment
+
+Create a `docker-compose.prod.yml` file based on `docker-compose.override.yml` and edit your `.env` to match production.
+
+Bring it up with:
+
+```
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+```
 
 ## Developer Notes
 
@@ -62,6 +69,17 @@ Permissions on directories:
 chown -R $USER:$USER .
 chmod -R o+w bootstrap/cache
 chmod -R o+w storage
+```
+
+If you have any issues starting up, try the following:
+
+```
+# clear cache and compiled classes
+php artisan cache:clear
+php artisan clear-compiled
+
+# regen the autoload file
+composer dump-autoload
 ```
 
 ## License
