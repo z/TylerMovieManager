@@ -29,10 +29,10 @@ x Front-end bootstrap + vue.js 2.0
 Deployment
 ----------
 x Use docker
-    - only the .env file should be needed
+    x only the .env file should be needed
         x Harden the server (basics, sshd, ufw, fail2ban, rkhunter)
     x Digital Ocean
-- Use git hook
+x Use git hook
 
 Extra
 -----

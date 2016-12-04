@@ -1,0 +1,21 @@
+#!/bin/bash
+# git post-receive hook to do deployments
+# Usage: setup a bare repo as a remote on your server
+# https://www.digitalocean.com/community/tutorials/how-to-use-git-hooks-to-automate-development-and-deployment-tasks
+
+MY_USER=git
+
+while read oldrev newrev ref
+do
+    if [[ $ref =~ .*/master$ ]];
+    then
+        echo "Master ref received.  Deploying master branch to production..."
+        git --work-tree=/home/${MY_USER}/www/tmm.8ed.me --git-dir=/home/${MY_USER}/tmm reset --hard
+        git --work-tree=/home/${MY_USER}/www/tmm.8ed.me --git-dir=/home/${MY_USER}/tmm checkout -f
+        cd /home/${MY_USER}/www/tmm.8ed.me && \
+        docker-compose down && \
+        docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+    else
+        echo "Ref $ref successfully received.  Doing nothing: only the master branch may be deployed on this server."
+    fi
+done
