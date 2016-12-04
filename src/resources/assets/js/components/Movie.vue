@@ -11,18 +11,18 @@
             </div><!-- card image -->
 
             <div class="card-content">
-                <span class="card-title">{{ movie.title }}</span>
-                <button type="button" class="btn btn-custom show-reveal pull-right" aria-label="details"  @click="show = !show">
+                <span class="card-title">{{ the_movie.title }}</span>
+                <button type="button" class="btn btn-custom show-reveal pull-right" aria-label="details" @click="show = !show">
                     <i class="fa fa-ellipsis-v"></i>
                 </button>
-                <h4 class="pull-right">{{ movie.year }}</h4>
+                <h4 class="pull-right">{{ the_movie.year }}</h4>
             </div><!-- card content -->
             <div class="card-action">
-                <a href="#">WATCH</a>
+                <a href="#" @click="show = !show" v-on:click.prevent="onClick">VIEW</a>
+                <span><em>{{ the_movie.format }}</em></span>
                 <span class="pull-right">
-                    <span>{{ movie.length }}</span>
-                    <span>{{ movie.format_id }}</span>
-                    <i class="fa fa-star"></i> {{ movie.rating }}
+                    <span class="btn-custom"><i class="fa fa-clock-o"></i> {{ the_movie.duration }}</span>
+                    <span class="btn-custom"><i class="fa fa-star"></i> {{ the_movie.rating }}</span>
                 </span>
             </div><!-- card actions -->
             <transition name="custom-slide-transition"
@@ -30,7 +30,7 @@
                         leave-active-class="animated flipOutX"
             >
                 <div class="card-reveal" v-if="show">
-                    <span class="card-title">{{ movie.title }}</span> <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="show = !show"><span aria-hidden="true">×</span></button>
+                    <span class="card-title">{{ the_movie.title }}</span> <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="show = !show"><span aria-hidden="true">×</span></button>
                     <p>Here is some more information about this product that is only revealed once clicked on.</p>
                 </div><!-- card reveal -->
             </transition>
@@ -39,6 +39,8 @@
 </template>
 
 <script>
+    const moment = require('moment');
+
     export default {
         /*
          * The component's data.
@@ -56,9 +58,16 @@
 
         computed: {
             the_movie: function() {
+                var formats = {
+                    1: 'VHS',
+                    2: 'DVD',
+                    3: 'Streaming',
+                };
                 var movie = this.movie;
                 var image = 'http://lorempixel.com/750/250/sports/' + movie.id;
                 movie['image'] = image;
+                movie['format'] = formats[movie.format_id];
+                movie['duration'] = moment.utc(moment.duration(parseInt(movie.length*60*60)).asMilliseconds()).format("HH:mm:ss");
                 return movie;
             }
         },
