@@ -63,10 +63,16 @@ class GuideboxController extends Controller
 
             $images = json_decode($images_request->getBody());
 
+            if ($images->results->thumbnails) {
+                $image = $images->results->thumbnails[0]->xlarge->url;
+            } else {
+                $image = false;
+            }
+
             $data = [
                 'imdb' => $metadata->imdb,
                 'overview' => $metadata->overview,
-                'image' => $images->results->thumbnails[0]->xlarge->url,
+                'image' => $image,
             ];
 
             return response($data);

@@ -1,3 +1,12 @@
+##  0.6.1 / 2016-12-05
+
+### Fixed
+* Fixed bug where user couldn't add movies if they didn't already have one
+
+### Added
+* Style updates to bring icons to card action menu
+* Auth middleware on web route for user-restricted pages 
+
 ##  0.6.0 / 2016-12-04
 
 ### Added

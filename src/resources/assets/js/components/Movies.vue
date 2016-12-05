@@ -4,7 +4,7 @@
 
 <template>
     <div>
-        <div v-if="movies.length > 0">
+        <div>
             <div class="row">
                 <div class="col-md-12">
 
@@ -54,14 +54,14 @@
             </div>
             <div class="row">
                 <div id="movie-collection">
-                    <div v-for="movie in computedList">
+                    <div v-for="movie in computedList" v-if="movies.length > 0">
                         <movie v-bind:movie="movie" v-bind:bus="bus"></movie>
+                    </div>
+                    <div v-else>
+                        Log in to see your movie collection.
                     </div>
                 </div>
             </div>
-        </div>
-        <div v-else>
-            Log in to see your movie collection.
         </div>
 
         <transition name="modal" v-if="showModal" @close="showModal = false">

@@ -10956,4 +10956,8 @@ body > .container {
   transform: scale(1.1);
 }
 
+.fa-custom {
+  line-height: 1.5em;
+}
+
 /*# sourceMappingURL=app.css.map */

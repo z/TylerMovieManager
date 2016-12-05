@@ -17,12 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/developers', 'DeveloperTokensController@index');
+Route::get('/developers', 'DeveloperTokensController@index')->middleware('auth');
 
 Route::get('/home', function () {
     return view('movies');
-});
+})->middleware('auth');
 
 Route::get('/movies', function () {
     return view('movies');
-});
+})->middleware('auth');
