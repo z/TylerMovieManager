@@ -273,7 +273,7 @@
                             var movies = response.data;
                             for (var i = 0; i < movies.length; i++) {
                                 var movie = movies[i];
-                                var image = 'http://lorempixel.com/750/250/sports/' + (movie.id % 10);
+                                var image = 'http://lorempixel.com/555/312/people/' + (movie.id % 10);
                                 movie['image'] = image;
                             }
                             this.movies = movies;

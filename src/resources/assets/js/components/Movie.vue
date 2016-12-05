@@ -23,7 +23,7 @@
                 <h4 class="pull-right">{{ the_movie.year }}</h4>
             </div><!-- card content -->
             <div class="card-action">
-                <a href="#" @click="details = !details" v-on:click.prevent>VIEW</a>
+                <a href="#" @click="details = !details" v-on:click.prevent>DETAILS</a>
                 <span><em>{{ the_movie.format }}</em></span>
                 <span class="pull-right">
                     <span class="btn-custom"><i class="fa fa-clock-o"></i> {{ the_movie.duration }}</span>
@@ -37,8 +37,8 @@
                 <div class="card-reveal" v-if="details">
                     <span class="card-title">{{ the_movie.title }}</span> <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="details = !details"><span aria-hidden="true">×</span></button>
                     <img class="img-responsive" :src="movie.image">
-                    <p>Ut nec velit eget urna gravida varius non lacinia arcu. Aenean risus felis, feugiat pulvinar ipsum eu, mattis laoreet turpis. Donec vitae urna erat.</p>
-                    <p>Vivamus vestibulum aliquam nunc vitae ultricies. Vivamus varius mauris non auctor ullamcorper. Praesent pharetra purus sed metus gravida lacinia. Nullam diam mauris, feugiat a porttitor et, blandit id mi.</p>
+                    <p>{{ the_movie.overview }}</p>
+                    <p><a :href="the_movie.imdb" target="_blank">IMDb</a></p>
                 </div><!-- card reveal -->
 
                 <div class="card-reveal" v-if="edit">
@@ -154,16 +154,26 @@
 
         computed: {
             the_movie: function() {
+                var vm = this;
                 var formats = {
                     1: 'VHS',
                     2: 'DVD',
                     3: 'Streaming',
                 };
-                var movie = this.movie;
-                var image = 'http://lorempixel.com/750/250/sports/' + (movie.id % 10);
-                movie['image'] = image;
+                var movie = vm.movie;
                 movie['format'] = formats[movie.format_id];
                 movie['duration'] = moment.utc(moment.duration(parseInt(movie.length*60*60)).asMilliseconds()).format("HH:mm:ss");
+
+                vm.$http.get('/token/guidebox/search/' + vm.movie.title + '?api_token=' + vm.token)
+                        .then(response => {
+                            // check response and handle error
+                            var metadata = response.data;
+                            movie['overview'] = metadata.overview;
+                            movie['imdb'] = 'http://www.imdb.com/title/' + metadata.imdb;
+                            movie['image'] = metadata.image;
+                        })
+
+
                 return movie;
             }
         },

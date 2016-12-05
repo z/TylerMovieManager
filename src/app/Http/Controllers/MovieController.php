@@ -43,7 +43,7 @@ class MovieController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|between:1,50',
-            'length' => 'required|integer|max:4320000',
+            'length' => 'required|integer|between:0,500',
             'year' => 'required|integer|between:1800,2100',
             'rating' => 'required|integer|between:1,5',
         ]);

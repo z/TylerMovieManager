@@ -107,6 +107,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'guidebox_api_key' => env('GUIDEBOX_API_KEY'),
+
     /*
     |--------------------------------------------------------------------------
     | Logging Configuration

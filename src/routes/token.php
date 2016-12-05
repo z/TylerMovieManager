@@ -20,3 +20,7 @@ Route::resource('movies', 'MovieController', ['only' => [
 Route::resource('formats', 'FormatController', ['only' => [
     'index', 'show', 'create', 'store', 'update', 'destroy'
 ]]);
+
+Route::resource('/guidebox/search/{search_string}', 'GuideboxController@index', ['parameters' => [
+    'search_string' => 'search_string'
+]]);
