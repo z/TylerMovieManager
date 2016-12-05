@@ -16,8 +16,8 @@
                         <i class="fa fa-ellipsis-v"></i>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="#" @click="edit = !edit" v-on:click.prevent>Edit</a></li>
-                        <li><a href="#" v-on:click.prevent="deleteMovie">Delete</a></li>
+                        <li><a href="#" @click="edit = !edit" v-on:click.prevent>Edit <i class="fa fa-pencil pull-right fa-custom"></i></a></li>
+                        <li><a href="#" v-on:click.prevent="deleteMovie">Delete <i class="fa fa-trash pull-right fa-custom"></i></a></li>
                     </ul>
                 </div>
                 <h4 class="pull-right">{{ the_movie.year }}</h4>
@@ -162,7 +162,8 @@
                 };
                 var movie = vm.movie;
                 movie['format'] = formats[movie.format_id];
-                movie['duration'] = moment.utc(moment.duration(parseInt(movie.length*60*60)).asMilliseconds()).format("HH:mm:ss");
+                movie['duration'] = moment.utc(moment.duration(parseInt(movie.length * 60000)).asMilliseconds()).format("H [h] mm [m]");
+                //movie['duration'] = moment.duration(parseInt(movie.length) * 60000).asMinutes();
 
                 vm.$http.get('/token/guidebox/search/' + vm.movie.title + '?api_token=' + vm.token)
                         .then(response => {
@@ -170,7 +171,9 @@
                             var metadata = response.data;
                             movie['overview'] = metadata.overview;
                             movie['imdb'] = 'http://www.imdb.com/title/' + metadata.imdb;
-                            movie['image'] = metadata.image;
+                            if (metadata.image) {
+                                movie['image'] = metadata.image;
+                            }
                         })
 
 

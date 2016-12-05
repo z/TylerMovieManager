@@ -1,6 +1,0 @@
-{
-    "require": {
-        "laracasts/utilities": "^2.1",
-        "guzzlehttp/guzzle": "^6.2"
-    }
-}
