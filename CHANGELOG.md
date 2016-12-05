@@ -1,3 +1,9 @@
+##  0.6.0 / 2016-12-04
+
+### Added
+* Integrated [Guidebox](https://api.guidebox.com/apidocs#movies)
+* Added guzzle cache middleware using redis to cache guidebox requests 
+
 ##  0.5.0 / 2016-12-04
 
 ### Added

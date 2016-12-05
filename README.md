@@ -27,6 +27,8 @@ composer install
 php artisan passport:install
 ```
 
+Optionally, you can register an API key with [Guidebox](https://api.guidebox.com/apidocs) for additional data about your movies.
+
 ## Usage
 
 The stack runs in docker, which can be started with:
