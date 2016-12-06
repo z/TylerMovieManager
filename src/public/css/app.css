@@ -10911,10 +10911,11 @@ body > .container {
 .modal-wrapper {
   display: table-cell;
   vertical-align: middle;
+  padding: .5em;
 }
 
 .modal-container {
-  width: 600px;
+  max-width: 40em;
   margin: 0px auto;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   -webkit-transition: all .3s ease;
