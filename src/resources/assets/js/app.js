@@ -15,6 +15,7 @@ require('./bootstrap');
 
 Vue.component('movie-item', require('./components/Movie.vue'));
 Vue.component('movies-collection', require('./components/Movies.vue'));
+Vue.component('star-rating', require('./components/Stars.vue'));
 
 Vue.component(
     'passport-clients',

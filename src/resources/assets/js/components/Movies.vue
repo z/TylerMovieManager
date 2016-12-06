@@ -77,7 +77,6 @@
 
                                         <legend>Add</legend>
 
-                                        <!-- Text input-->
                                         <div class="form-group">
                                             <label class="col-md-3 control-label" for="title">Title</label>
                                             <div class="col-md-7">
@@ -85,10 +84,9 @@
                                             </div>
                                         </div>
 
-                                        <!-- Select Basic -->
                                         <div class="form-group">
                                             <label class="col-md-3 control-label" for="format">Format</label>
-                                            <div class="col-md-7">
+                                            <div class="col-md-4">
                                                 <select id="format" name="format" class="form-control" v-model.number="newMovie.format_id">
                                                     <option value="1">VHS</option>
                                                     <option value="2">DVD</option>
@@ -97,54 +95,26 @@
                                             </div>
                                         </div>
 
-                                        <!-- Text input-->
                                         <div class="form-group">
-                                            <label class="col-md-3 control-label" for="year">Year</label>
-                                            <div class="col-md-7">
+                                            <label class="col-md-3 control-label" for="length">Length</label>
+                                            <div class="col-md-3">
+                                                <input id="length" name="length" type="text" placeholder="90" class="form-control input-md" v-model.number="newMovie.length">
+                                            </div>
+                                            <label class="col-md-1 control-label" for="year">Year</label>
+                                            <div class="col-md-3">
                                                 <input id="year" name="year" type="text" placeholder="2016" class="form-control input-md" v-model.number="newMovie.year">
                                             </div>
                                         </div>
 
-                                        <!-- Multiple Radios (inline) -->
                                         <div class="form-group">
-                                            <label class="col-md-3 control-label" for="rating">Rating</label>
-                                            <div class="col-md-7">
-                                                <label class="radio-inline" for="rating-0">
-                                                    <input type="radio" name="rating" id="rating-0" value="1" v-model.number="newMovie.rating">
-                                                    1
-                                                </label>
-                                                <label class="radio-inline" for="rating-1">
-                                                    <input type="radio" name="rating" id="rating-1" value="2" v-model.number="newMovie.rating">
-                                                    2
-                                                </label>
-                                                <label class="radio-inline" for="rating-2">
-                                                    <input type="radio" name="rating" id="rating-2" value="3" v-model.number="newMovie.rating">
-                                                    3
-                                                </label>
-                                                <label class="radio-inline" for="rating-3">
-                                                    <input type="radio" name="rating" id="rating-3" value="4" v-model.number="newMovie.rating">
-                                                    4
-                                                </label>
-                                                <label class="radio-inline" for="rating-4">
-                                                    <input type="radio" name="rating" id="rating-4" value="5" v-model.number="newMovie.rating">
-                                                    5
-                                                </label>
+                                            <label class="col-md-3 control-label">Rating</label>
+                                            <div class="col-md-8">
+                                                <star-rating :value="newMovie.rating" :bus="bus" v-model.number="newMovie.rating"class="pull-left"></star-rating>
                                             </div>
                                         </div>
 
-                                        <!-- Text input-->
                                         <div class="form-group">
-                                            <label class="col-md-3 control-label" for="length">Length</label>
-                                            <div class="col-md-7">
-                                                <input id="length" name="length" type="text" placeholder="90" class="form-control input-md" v-model.number="newMovie.length">
-                                                <span class="help-block">In minutes</span>
-                                            </div>
-                                        </div>
-
-                                        <!-- Button (Double) -->
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label" for="button1id"></label>
-                                            <div class="col-md-7">
+                                            <div class="col-md-7 col-md-offset-3">
                                                 <button class="btn btn-success" v-on:click.prevent="addMovie">Save Changes</button>
                                                 <button class="btn btn-danger" v-on:click.prevent @click="showModal = false">Cancel</button>
                                             </div>
@@ -220,6 +190,10 @@
             vm.bus.$on('cancelAdd', function(movie) {
                 vm.newMovie = {};
                 vm.showModal = false;
+                return;
+            })
+            vm.bus.$on('movieRated', function(data) {
+                vm.newMovie['rating'] = data['rating'];
                 return;
             })
         },

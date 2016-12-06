@@ -38,7 +38,7 @@
                     <span class="card-title">{{ the_movie.title }}</span> <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="details = !details"><span aria-hidden="true">×</span></button>
                     <img class="img-responsive" :src="movie.image">
                     <p>{{ the_movie.overview }}</p>
-                    <p><a :href="the_movie.imdb" target="_blank">IMDb</a></p>
+                    <p><a :href="the_movie.imdb" class="btn btn-default" target="_blank">IMDb</a></p>
                 </div><!-- card reveal -->
 
                 <div class="card-reveal" v-if="edit">
@@ -49,7 +49,6 @@
 
                             <legend>Edit</legend>
 
-                            <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="title">Title</label>
                                 <div class="col-md-7">
@@ -57,10 +56,9 @@
                                 </div>
                             </div>
 
-                            <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="format">Format</label>
-                                <div class="col-md-7">
+                                <div class="col-md-4">
                                     <select id="format" name="format" class="form-control" v-model.number="movie.format_id">
                                         <option value="1">VHS</option>
                                         <option value="2">DVD</option>
@@ -69,54 +67,26 @@
                                 </div>
                             </div>
 
-                            <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="year">Year</label>
-                                <div class="col-md-7">
+                                <label class="col-md-3 control-label" for="length">Length</label>
+                                <div class="col-md-3">
+                                    <input id="length" name="length" type="text" placeholder="90" class="form-control input-md" v-model.number="movie.length">
+                                </div>
+                                <label class="col-md-1 control-label" for="year">Year</label>
+                                <div class="col-md-3">
                                     <input id="year" name="year" type="text" placeholder="2016" class="form-control input-md" v-model.number="movie.year">
                                 </div>
                             </div>
 
-                            <!-- Multiple Radios (inline) -->
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Rating</label>
                                 <div class="col-md-8">
-                                    <label class="radio-inline" for="rating-0">
-                                        <input type="radio" name="rating" id="rating-0" value="1" v-model.number="movie.rating">
-                                        1
-                                    </label>
-                                    <label class="radio-inline" for="rating-1">
-                                        <input type="radio" name="rating" id="rating-1" value="2" v-model.number="movie.rating">
-                                        2
-                                    </label>
-                                    <label class="radio-inline" for="rating-2">
-                                        <input type="radio" name="rating" id="rating-2" value="3" v-model.number="movie.rating">
-                                        3
-                                    </label>
-                                    <label class="radio-inline" for="rating-3">
-                                        <input type="radio" name="rating" id="rating-3" value="4" v-model.number="movie.rating">
-                                        4
-                                    </label>
-                                    <label class="radio-inline" for="rating-4">
-                                        <input type="radio" name="rating" id="rating-4" value="5" v-model.number="movie.rating">
-                                        5
-                                    </label>
+                                    <star-rating :id="movie.id" :value="movie.rating" :bus="bus" class="pull-left"></star-rating>
                                 </div>
                             </div>
 
-                            <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="length">Length</label>
-                                <div class="col-md-7">
-                                    <input id="length" name="length" type="text" placeholder="90" class="form-control input-md" v-model.number="movie.length">
-                                    <span class="help-block">In minutes</span>
-                                </div>
-                            </div>
-
-                            <!-- Button (Double) -->
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="button1id"></label>
-                                <div class="col-md-7">
+                                <div class="col-md-7 col-md-offset-3">
                                     <button class="btn btn-success" v-on:click.prevent="updateMovie">Save Changes</button>
                                     <button class="btn btn-danger" v-on:click.prevent="edit = !edit">Cancel</button>
                                 </div>
@@ -152,6 +122,19 @@
             'movie',
             'bus'
         ],
+
+        /**
+         * Prepare the component (Vue 2.x).
+         */
+        mounted() {
+            var vm = this;
+            vm.bus.$on('movieRated', function(data) {
+                if (data['id'] == vm.the_movie.id) {
+                    vm.the_movie['rating'] = data['rating'];
+                }
+                return;
+            })
+        },
 
         computed: {
             the_movie: function() {
