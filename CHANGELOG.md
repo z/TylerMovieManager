@@ -1,3 +1,11 @@
+##  0.6.4 / 2016-12-06
+
+### Changed
+* created a dark theme
+
+### Added
+* fancier dropdowns and checkboxes
+
 ##  0.6.3 / 2016-12-05
 
 ### Added

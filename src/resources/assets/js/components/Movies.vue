@@ -9,44 +9,56 @@
                 <div class="col-md-12">
 
                     <div class="row">
-                        <div class="pull-left col-md-3 col-sm-12">
+                        <div class="col-md-3 col-sm-12">
                             <div class="input-group">
                                 <input v-model="query" type="text" class="form-control" placeholder="Search">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                                    <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="pull-right filter-options col-md-7 col-sm-12">
-                            <input type="checkbox" id="1" value="1" v-model.number="selected_formats"> VHS
-                            <input type="checkbox" id="2" value="2" v-model.number="selected_formats"> DVD
-                            <input type="checkbox" id="3" value="3" v-model.number="selected_formats"> Streaming
-                            <span>|</span>
-                            Sort:
-                            <select v-model.number="sorting_selected">
-                                <option v-for="sorting_option in sorting_options" v-bind:value="sorting_option.value" type="number">
-                                    {{ sorting_option.text }}
-                                </option>
-                            </select>
-                            <select v-model.number="sort_order">
-                                <option v-for="sorting_direction in sorting_directions" v-bind:value="sorting_direction.value" type="number">
-                                    {{ sorting_direction.text }}
-                                </option>
-                            </select>
-                            <span>|</span>
-                            <span>
-                                Rating:
-                                <select v-model.number="rating_selected">
+                        <div class="filter-options col-md-8 col-sm-12">
+                            <div class="form-inline">
+
+                                <label class="col-md-1 control-label inline-label" for="title">Sort: </label>
+                                <select id="sorting" class="form-control" v-model.number="sorting_selected">
+                                    <option v-for="sorting_option in sorting_options" v-bind:value="sorting_option.value" type="number">
+                                        {{ sorting_option.text }}
+                                    </option>
+                                </select>
+
+                                <select id="ordering" class="form-control" v-model.number="sort_order">
+                                    <option v-for="sorting_direction in sorting_directions" v-bind:value="sorting_direction.value" type="number">
+                                        {{ sorting_direction.text }}
+                                    </option>
+                                </select>
+
+                                <select id="" class="form-control" v-model.number="rating_selected">
                                     <option v-for="rating_option in rating_options" v-bind:value="rating_option.value" type="number">
                                         {{ rating_option.text }}
                                     </option>
                                 </select>
-                            </span>
+
+                                <div class="checkbox">
+                                    <input id="3" value="3" v-model.number="selected_formats" class="checkbox-custom" name="checkbox-group" type="checkbox">
+                                    <label for="3" class="checkbox-custom-label">Streaming</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input id="2" value="2" v-model.number="selected_formats" class="checkbox-custom" name="checkbox-group" type="checkbox">
+                                    <label for="2" class="checkbox-custom-label">DVD</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input id="1" value="1" v-model.number="selected_formats" class="checkbox-custom" name="checkbox-group" type="checkbox">
+                                    <label for="1" class="checkbox-custom-label">VHS</label>
+                                </div>
+
+
+                            </div>
                         </div><!-- .filter-options -->
 
-                        <div class="pull-left col-md-1 col-sm-12">
-                            <button class="btn btn-success" @click="showModal = true">Add Movie</button>
+                        <div class="col-md-1 col-sm-12">
+                            <button class="btn btn-success pull-right" @click="showModal = true">Add Movie</button>
                         </div>
 
                     </div>
@@ -70,7 +82,7 @@
                     <div class="modal-container">
                         <div class="card">
                             <div class="card-new">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="showModal = false"><span aria-hidden="true">×</span></button>
+                                <button type="button" class="close light" data-dismiss="modal" aria-label="Close" @click="showModal = false"><span aria-hidden="true">×</span></button>
 
                                 <form class="form-horizontal">
                                     <fieldset>
@@ -115,7 +127,7 @@
 
                                         <div class="form-group">
                                             <div class="col-md-7 col-md-offset-3">
-                                                <button class="btn btn-success" v-on:click.prevent="addMovie">Save Changes</button>
+                                                <button class="btn btn-success" v-on:click.prevent="addMovie">Save</button>
                                                 <button class="btn btn-danger" v-on:click.prevent @click="showModal = false">Cancel</button>
                                             </div>
                                         </div>

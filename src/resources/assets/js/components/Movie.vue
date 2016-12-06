@@ -35,14 +35,14 @@
                         leave-active-class="animated flipOutX"
             >
                 <div class="card-reveal" v-if="details">
-                    <span class="card-title">{{ the_movie.title }}</span> <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="details = !details"><span aria-hidden="true">×</span></button>
+                    <span class="card-title">{{ the_movie.title }}</span> <button type="button" class="close light" data-dismiss="modal" aria-label="Close" @click="details = !details"><span aria-hidden="true">×</span></button>
                     <img class="img-responsive" :src="movie.image">
                     <p>{{ the_movie.overview }}</p>
                     <p><a :href="the_movie.imdb" class="btn btn-default" target="_blank">IMDb</a></p>
                 </div><!-- card reveal -->
 
                 <div class="card-reveal" v-if="edit">
-                    <span class="card-title">{{ the_movie.title }}</span> <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="edit = !edit"><span aria-hidden="true">×</span></button>
+                    <span class="card-title">{{ the_movie.title }}</span> <button type="button" class="close light" data-dismiss="modal" aria-label="Close" @click="edit = !edit"><span aria-hidden="true">×</span></button>
 
                     <form class="form-horizontal">
                         <fieldset>
