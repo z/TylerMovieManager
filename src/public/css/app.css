@@ -10911,7 +10911,7 @@ body > .container {
 .modal-wrapper {
   display: table-cell;
   vertical-align: middle;
-  padding: .5em;
+  padding: 0 .5em;
 }
 
 .modal-container {
@@ -10928,7 +10928,7 @@ body > .container {
 }
 
 .modal-body {
-  margin: 20px 0;
+  margin: .5em 0;
 }
 
 .modal-default-button {
