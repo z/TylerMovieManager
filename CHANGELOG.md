@@ -1,3 +1,8 @@
+##  0.6.3 / 2016-12-05
+
+### Added
+* Better add/edit form layout and star ratings UI
+
 ##  0.6.2 / 2016-12-05
 
 ### Changed
