@@ -6,7 +6,7 @@
 
     <p class="lead">A web interface to your movie collection.</p>
 
-    <movies></movies>
+    <movies-collection></movies-collection>
 
 </div>
 @endsection

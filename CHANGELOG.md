@@ -1,3 +1,8 @@
+##  0.6.2 / 2016-12-05
+
+### Changed
+* Add and remove movies in the DOM without needing to poll the server again
+
 ##  0.6.1 / 2016-12-05
 
 ### Fixed

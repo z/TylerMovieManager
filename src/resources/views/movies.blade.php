@@ -6,7 +6,7 @@
 
         <h4>Movie Collection</h4>
 
-        <movies></movies>
+        <movies-collection></movies-collection>
 
     </div>
 @endsection

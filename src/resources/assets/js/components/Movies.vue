@@ -54,8 +54,8 @@
             </div>
             <div class="row">
                 <div id="movie-collection">
-                    <div v-for="movie in computedList" v-if="movies.length > 0">
-                        <movie v-bind:movie="movie" v-bind:bus="bus"></movie>
+                    <div v-for="(movie, index) in computedList" v-if="movies.length > 0">
+                        <movie-item v-bind:movie="movie" v-bind:bus="bus" v-on:removeMovie="movies.splice(index, 1)"></movie-item>
                     </div>
                     <div v-else>
                         Log in to see your movie collection.
@@ -217,11 +217,9 @@
         mounted() {
             var vm = this;
             vm.prepareComponent();
-            vm.bus.$on('removeMovie', function(movie) {
-                return vm.getMovies();
-            })
             vm.bus.$on('cancelAdd', function(movie) {
-                this.showModal = false;
+                vm.newMovie = {};
+                vm.showModal = false;
                 return;
             })
         },
@@ -273,8 +271,7 @@
                             var movies = response.data;
                             for (var i = 0; i < movies.length; i++) {
                                 var movie = movies[i];
-                                var image = 'http://lorempixel.com/555/312/people/' + (movie.id % 10);
-                                movie['image'] = image;
+                                movie['image'] = '';
                             }
                             this.movies = movies;
                         });
@@ -298,14 +295,17 @@
                     'rating': vm.newMovie.rating,
                 }
 
-                console.log(movie);
-
-                this.$http.post('/token/movies?api_token=' + this.token, movie)
+                vm.$http.post('/token/movies?api_token=' + vm.token, movie)
                         .then(response => {
                             // check response and handle error
-                            console.log(response);
+
+                            vm.newMovie['image'] = 'http://lorempixel.com/555/312/people/' + (
+Math.ceil(Math.random() * 10) % 10);
+
+                            this.movies.push(vm.newMovie);
+
+                            vm.newMovie = {};
                             vm.showModal = false;
-                            vm.getMovies();
                         })
             }
         },

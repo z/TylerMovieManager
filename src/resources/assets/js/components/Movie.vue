@@ -3,7 +3,7 @@
 </style>
 
 <template>
-    <div class="col-md-6" v-if="movie.length > 0">
+    <div class="col-md-6" v-if="movie.length > 0 && visible">
         <div class="card">
             <div class="card-image">
                 <img class="img-responsive" :src="movie.image">
@@ -140,6 +140,7 @@
          */
         data() {
             return {
+                visible: true,
                 dropdown: false,
                 details: false,
                 edit: false,
@@ -163,7 +164,10 @@
                 var movie = vm.movie;
                 movie['format'] = formats[movie.format_id];
                 movie['duration'] = moment.utc(moment.duration(parseInt(movie.length * 60000)).asMilliseconds()).format("H [h] mm [m]");
-                //movie['duration'] = moment.duration(parseInt(movie.length) * 60000).asMinutes();
+
+                var image = 'http://lorempixel.com/555/312/people/' + (movie.id % 10);
+
+                movie['image'] = image;
 
                 vm.$http.get('/token/guidebox/search/' + vm.movie.title + '?api_token=' + vm.token)
                         .then(response => {
@@ -205,6 +209,7 @@
 
                             // send an event to an event bus that the parent is listening on
                             this.bus.$emit('removeMovie', vm.movie);
+                            this.visible = false;
                         })
             }
         }
