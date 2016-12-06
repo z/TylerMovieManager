@@ -79,8 +79,8 @@
 
                             <!-- Multiple Radios (inline) -->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="rating">Rating</label>
-                                <div class="col-md-7">
+                                <label class="col-md-3 control-label">Rating</label>
+                                <div class="col-md-8">
                                     <label class="radio-inline" for="rating-0">
                                         <input type="radio" name="rating" id="rating-0" value="1" v-model.number="movie.rating">
                                         1
