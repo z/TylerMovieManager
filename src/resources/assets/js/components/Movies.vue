@@ -252,7 +252,7 @@
              * Get all of the authorized tokens for the user.
              */
             getMovies() {
-                this.$http.get('/token/movies/?api_token=' + this.token)
+                axios.get('/token/movies/?api_token=' + this.token)
                         .then(response => {
                             var movies = response.data;
                             for (var i = 0; i < movies.length; i++) {
@@ -281,7 +281,7 @@
                     'rating': vm.newMovie.rating,
                 }
 
-                vm.$http.post('/token/movies?api_token=' + vm.token, movie)
+                axios.post('/token/movies?api_token=' + vm.token, movie)
                         .then(response => {
                             // check response and handle error
 

@@ -23,6 +23,10 @@ Route::get('/home', function () {
     return view('movies');
 })->middleware('auth');
 
+Route::get('/example', function () {
+    return view('example');
+});
+
 Route::get('/movies', function () {
     return view('movies');
 })->middleware('auth');

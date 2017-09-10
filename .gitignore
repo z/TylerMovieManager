@@ -2,6 +2,7 @@
 .idea/
 *.swo
 *.swp
+*.bak
 
 # project
 /docker/containers/mysql/

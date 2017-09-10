@@ -152,7 +152,7 @@
 
                 movie['image'] = image;
 
-                vm.$http.get('/token/tmdb/search/' + vm.movie.title + '?api_token=' + vm.token)
+                axios.get('/token/tmdb/search/' + vm.movie.title + '?api_token=' + vm.token)
                         .then(response => {
                             // check response and handle error
                             var metadata = response.data;
@@ -173,7 +173,7 @@
              * Update the movie.
              */
             updateMovie() {
-                this.$http.put('/token/movies/' + this.movie.id + '?api_token=' + this.token, this.movie)
+                axios.put('/token/movies/' + this.movie.id + '?api_token=' + this.token, this.movie)
                         .then(response => {
                             // check response and handle error
 
@@ -186,7 +186,7 @@
              */
             deleteMovie() {
                 var vm = this;
-                this.$http.delete('/token/movies/' + this.movie.id + '?api_token=' + this.token)
+                axios.delete('/token/movies/' + this.movie.id + '?api_token=' + this.token)
                         .then(response => {
                             // check response and handle error
 

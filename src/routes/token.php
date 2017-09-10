@@ -21,7 +21,7 @@ Route::resource('formats', 'FormatController', ['only' => [
     'index', 'show', 'create', 'store', 'update', 'destroy'
 ]]);
 
-Route::resource('/tmdb/search/{search_string}', 'TMDBController@index', ['parameters' => [
+Route::resource('/tmdb/search/{search_string}', 'TMDBController', ['parameters' => [
     'search_string' => 'search_string'
 ]]);
 
