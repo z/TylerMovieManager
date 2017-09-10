@@ -152,7 +152,7 @@
 
                 movie['image'] = image;
 
-                vm.$http.get('/token/guidebox/search/' + vm.movie.title + '?api_token=' + vm.token)
+                vm.$http.get('/token/tmdb/search/' + vm.movie.title + '?api_token=' + vm.token)
                         .then(response => {
                             // check response and handle error
                             var metadata = response.data;

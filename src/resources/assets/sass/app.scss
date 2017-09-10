@@ -227,6 +227,14 @@ body {
   transform: scale(1.2) rotate(-7deg);
 }
 
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  transform: scale(1.1);
+  padding: 3em 2em;
+}
+
 .card {
   font-family: 'Roboto', sans-serif;
   background-color: #333;
