@@ -7,11 +7,6 @@
 ### Added
 * TMDB as a source of posters
 
-##  0.6.3 / 2016-12-05
-
-### Added
-* Better add/edit form layout and star ratings UI
-
 ##  0.6.4 / 2016-12-06
 
 ### Changed
