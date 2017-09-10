@@ -109,6 +109,8 @@ return [
 
     'guidebox_api_key' => env('GUIDEBOX_API_KEY'),
 
+    'tmdb_api_key' => env('TMDB_API_KEY'),
+
     /*
     |--------------------------------------------------------------------------
     | Logging Configuration

@@ -21,6 +21,11 @@ Route::resource('formats', 'FormatController', ['only' => [
     'index', 'show', 'create', 'store', 'update', 'destroy'
 ]]);
 
-Route::resource('/guidebox/search/{search_string}', 'GuideboxController@index', ['parameters' => [
+Route::resource('/tmdb/search/{search_string}', 'TMDBController@index', ['parameters' => [
     'search_string' => 'search_string'
 ]]);
+
+//Route::resource('/guidebox/search/{search_string}', '
+//GuideboxController@index', ['parameters' => [
+//    'search_string' => 'search_string'
+//]]);

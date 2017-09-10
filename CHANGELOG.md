@@ -1,3 +1,17 @@
+##  0.6.5 / 2017-09-17
+
+### Changed
+* Made TMDB the new source of posters (Guidebox has gone commercial-only as of now)
+* Updated dependencies
+
+### Added
+* TMDB as a source of posters
+
+##  0.6.3 / 2016-12-05
+
+### Added
+* Better add/edit form layout and star ratings UI
+
 ##  0.6.4 / 2016-12-06
 
 ### Changed
@@ -23,7 +37,7 @@
 
 ### Added
 * Style updates to bring icons to card action menu
-* Auth middleware on web route for user-restricted pages 
+* Auth middleware on web route for user-restricted pages
 
 ##  0.6.0 / 2016-12-04
 

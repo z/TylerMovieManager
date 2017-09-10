@@ -4,6 +4,7 @@ A movie management application using a REST API built with Laravel.
 
 ![Screenshot TMM](extra/media/tmm.png)
 ![Screenshot TMM](extra/media/tmm-browse.png)
+![Screenshot TMM](extra/media/tmm-add.png)
 
 ## Dependencies
 
@@ -40,6 +41,8 @@ docker-compose up
 This setups a database, and an nginx + php5-fpm container to serve the Laravel project located in `src`. 
 
 Visit [http://tmm.8ed.local](http://tmm.8ed.local) in your web browser and create a new user.
+
+Default login is [test@test.com/test123](https://github.com/z/TylerMovieManager/blob/master/src/database/seeds/UsersTableSeeder.php#L16)
 
 ## Deployment
 

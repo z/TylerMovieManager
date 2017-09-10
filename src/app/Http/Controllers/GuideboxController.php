@@ -12,7 +12,8 @@ use Kevinrob\GuzzleCache\Storage\LaravelCacheStorage;
 
 class GuideboxController extends Controller
 {
-    /**
+    /**3
+     * -+
      * Create a new controller instance.
      *
      * @return void
@@ -77,7 +78,7 @@ class GuideboxController extends Controller
 
             return response($data);
         } else {
-            return $search_request->getStatusCode();
+            return response($search_request->getStatusCode());
         }
     }
 }
