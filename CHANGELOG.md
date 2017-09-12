@@ -1,4 +1,10 @@
-##  0.6.5 / 2017-09-17
+##  0.7.0 / 2017-09-11
+
+### Changed
+
+* Upgraded Laravel from 5.3 to 5.4
+
+##  0.6.5 / 2017-09-09
 
 ### Changed
 * Made TMDB the new source of posters (Guidebox has gone commercial-only as of now)
