@@ -42,7 +42,7 @@ This setups a database, and an nginx + php5-fpm container to serve the Laravel p
 
 Visit [http://tmm.8ed.local](http://tmm.8ed.local) in your web browser and create a new user.
 
-Default login is [test@test.com/test123](https://github.com/z/TylerMovieManager/blob/master/src/database/seeds/UsersTableSeeder.php#L16)
+Default login is [test@test.com / test123](https://github.com/z/TylerMovieManager/blob/master/src/database/seeds/UsersTableSeeder.php#L16)
 
 ## Deployment
 
