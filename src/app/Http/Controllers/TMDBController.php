@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use Kevinrob\GuzzleCache\CacheMiddleware;
 use Illuminate\Support\Facades\Cache;
-use Kevinrob\GuzzleCache\Strategy\PrivateCacheStrategy;
+use Kevinrob\GuzzleCache\Strategy\GreedyCacheStrategy;
 use Kevinrob\GuzzleCache\Storage\LaravelCacheStorage;
 
 class TMDBController extends Controller
@@ -37,41 +37,55 @@ class TMDBController extends Controller
 
         $stack->push(
             new CacheMiddleware(
-                new PrivateCacheStrategy(
+                new GreedyCacheStrategy(
                     new LaravelCacheStorage(
                         Cache::store('redis')
-                    )
+                    ),
+                    18000
                 )
             ),
-            'cache'
+            'greedy-cache'
         );
+
+        Cache::flush();
 
         // Initialize the client with the handler option
         $client = new Client(['handler' => $stack]);
 
-        $api_url = 'https://api.themoviedb.org/3/';
-        $web_url = 'https://image.tmdb.org/t/p/w500';
+        $movie_hash = sha1($movie_name);
 
-        $search_request = $client->request('GET', $api_url . 'search/movie?query=' . $movie_name . '&api_key=' . config('app.tmdb_api_key'));
-        if ( $search_request->getStatusCode() == 200) {
-            $search_data =  json_decode($search_request->getBody()->getContents());
-            $movie = $search_data->results[0];
+        $data = Cache::store('redis')->get($movie_hash);
 
-            if ($movie->poster_path) {
-                $image = $web_url . $movie->poster_path;
-            } else {
-                $image = false;
-            }
-
-            $data = [
-                'imdb' => null,
-                'overview' => $movie->overview,
-                'image' => $image,
-            ];
-
+        if ($data) {
             return response($data);
         } else {
-            return response($search_request->getStatusCode());
+            $api_url = 'https://api.themoviedb.org/3/';
+            $web_url = 'https://image.tmdb.org/t/p/w500';
+
+            $search_request = $client->request('GET', $api_url . 'search/movie?query=' . $movie_name . '&api_key=' . config('app.tmdb_api_key'));
+
+            if ($search_request->getStatusCode() == 200) {
+                $search_data = json_decode($search_request->getBody()->getContents());
+                $movie = $search_data->results[0];
+
+                if ($movie->poster_path) {
+                    $image = $web_url . $movie->poster_path;
+                } else {
+                    $image = false;
+                }
+
+                $data = [
+                    'imdb' => null,
+                    'overview' => $movie->overview,
+                    'image' => $image,
+                ];
+
+                Cache::store('redis')->put($movie_hash, $data, 10000);
+
+                return response($data);
+            } else {
+                return response($search_request->getStatusCode());
+            }
         }
     }
 }

@@ -24,7 +24,7 @@ service php5-fpm start
     php artisan cache:clear && \
     php artisan clear-compile && \
     npm install && \
-    gulp
+    npm run dev
 )
 
 exec $cmd

@@ -2,7 +2,7 @@ version: '2'
 services:
   db:
     restart: on-failure:10
-    image: mariadb
+    image: mariadb:10.3
     volumes:
       - ./docker/containers/mysql/data:/var/lib/mysql:rw
     ports:
@@ -24,3 +24,4 @@ services:
       - ./src/.env
     depends_on:
       - db
+      - redis
